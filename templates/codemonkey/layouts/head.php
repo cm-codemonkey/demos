@@ -17,6 +17,9 @@
 		{$dependencies.css}
 	</head>
 	<body>
-		<header class="main-header">
-			
+		<header class="main_header">
+
+		</header>
+		<header class="main_mobile">
+
 		</header>

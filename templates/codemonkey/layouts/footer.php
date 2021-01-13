@@ -1,6 +1,6 @@
 <?php defined('_EXEC') or die; ?>
 
-        <footer class="main-footer">
+        <footer class="main_footer">
             <div class="container">
                 <p>Copyright © 2021 <strong><?php echo Configuration::$web_page; ?></strong> <i class="mdi mdi-heart text-danger"></i> {$lang.development_by} <a href="https://codemonkey.com.mx" target="_blank">codemonkey.com.mx</a></p>
             </div>

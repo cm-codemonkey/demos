@@ -12,6 +12,6 @@ $this->dependencies->add(['other', '<script async defer src="https://maps.google
 
 ?>
 
-<main class="main-body">
+<main class="main_body">
 
 </main>

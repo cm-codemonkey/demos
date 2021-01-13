@@ -2,16 +2,16 @@
 
 $(document).ready(function ()
 {
-    nav_scroll_down('header.main-header', 'down', 0);
+    nav_scroll_down('header.main_header', 'down', 0);
 
     $('[data-open-mobile]').on('click', function()
     {
-        $('header.mobile-header').addClass('open');
+        $('header.mobile_header').addClass('open');
     });
 
     $('[data-close-mobile]').on('click', function()
     {
-        $('header.mobile-header').removeClass('open');
+        $('header.mobile_header').removeClass('open');
     });
 });
 
