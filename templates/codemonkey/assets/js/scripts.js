@@ -4,12 +4,12 @@ $(document).ready(function ()
 {
     nav_scroll_down('header.main_header', 'down', 0);
 
-    $('[data-open-mobile]').on('click', function()
+    $('[data-action="open_mobile_menu"]').on('click', function()
     {
         $('header.mobile_header').addClass('open');
     });
 
-    $('[data-close-mobile]').on('click', function()
+    $('[data-action="close_mobile_menu"]').on('click', function()
     {
         $('header.mobile_header').removeClass('open');
     });
