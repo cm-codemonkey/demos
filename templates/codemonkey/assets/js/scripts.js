@@ -9,7 +9,7 @@ $(document).ready(function ()
         $('header.mobile_header').addClass('open');
     });
 
-    $('[data-action="close_mobile_menu"]').on('click', function()
+    $(document).on('click', '[data-action="close_mobile_menu"], header.mobile_header > nav > ul > li > a', function()
     {
         $('header.mobile_header').removeClass('open');
     });
