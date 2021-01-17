@@ -2,7 +2,7 @@
 
 $(document).ready(function ()
 {
-    var slideshow_home = $('.slideshow_home > .owl-carousel').owlCarousel({
+    var slideshow = $('.slideshow > .owl-carousel').owlCarousel({
         stagePadding: 0,
         items: 1,
         margin: 10,
@@ -14,14 +14,20 @@ $(document).ready(function ()
         loop: true
     });
 
-    $('.slideshow_home > .control-buttons .prev').on('click', function ()
+    $('.slideshow > .prev').on('click', function ()
     {
-        slideshow_home.trigger('prev.owl.carousel');
+        slideshow.trigger('prev.owl.carousel');
+        slideshow.trigger('stop.owl.autoplay');
+
+        setTimeout(function() { slideshow.trigger('play.owl.autoplay'); }, '60000');
     });
 
-    $('.slideshow_home > .control-buttons .next').on('click', function ()
+    $('.slideshow > .next').on('click', function ()
     {
-        slideshow_home.trigger('next.owl.carousel');
+        slideshow.trigger('next.owl.carousel');
+        slideshow.trigger('stop.owl.autoplay');
+
+        setTimeout(function() { slideshow.trigger('play.owl.autoplay'); }, '60000');
     });
 
     $('form[name="contact"]').on('submit', function(e)
