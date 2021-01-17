@@ -3,11 +3,11 @@
         <footer class="main_footer">
             <nav>
                 <ul>
-                    <li>Copyright © 2021 <strong><?php echo Configuration::$web_page; ?></strong> <i class="fas fa-heart"></i> {$lang.development_by} <a href="https://codemonkey.com.mx" target="_blank">codemonkey.com.mx</a></li>
-                </ul>
-                <ul>
                     <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
                     <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+                <ul>
+                    <li>Copyright © 2021 <strong><?php echo Configuration::$web_page; ?></strong> <i class="fas fa-heart"></i> {$lang.development_by} <a href="https://codemonkey.com.mx" target="_blank">Code Monkey</a></li>
                 </ul>
             </nav>
         </footer>
