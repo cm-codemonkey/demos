@@ -268,4 +268,22 @@ class Configuration
      * @var integer $smtp_port
      */
 	public static $smtp_port = 465;
+
+	/**
+     * Correo electrónico de emailing.
+	 *
+	 * @static
+	 *
+     * @var integer $smtp_emailer
+     */
+	public static $smtp_emailer = 'noreply@company.com';
+
+	/**
+     * Correo electrónico de contacto.
+	 *
+	 * @static
+	 *
+     * @var integer $smtp_contact
+     */
+	public static $smtp_contact = 'contacto@company.com';
 }
