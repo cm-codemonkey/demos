@@ -1,5 +1,15 @@
 "use strict";
 
+$(window).on('beforeunload ajaxStart', function()
+{
+    $('body').prepend('<div data-ajax-loader><div class="loader"></div></div>');
+});
+
+$(window).on('ajaxStop', function()
+{
+    $('body').find('[data-ajax-loader]').remove();
+});
+
 $(document).ready(function ()
 {
     nav_scroll_down('header.main_header', 'down', 0);

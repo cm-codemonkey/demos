@@ -18,8 +18,9 @@
 	</head>
 	<body>
 		<header class="main_header">
-
+			<a href="?lang=es"><img src="{$path.images}es.png" alt="ES"></a>
+			<a href="?lang=en"><img src="{$path.images}en.png" alt="EN"></a>
 		</header>
-		<header class="main_mobile">
+		<header class="mobile_header">
 
 		</header>
