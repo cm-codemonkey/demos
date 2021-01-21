@@ -13,5 +13,11 @@ $this->dependencies->add(['other', '<script async defer src="https://maps.google
 ?>
 
 <main class="main_body">
-
+    <form name="contact">
+        <input type="text" name="name" placeholder="{$lang.complete_name}" class="m-b-10 p-lr-20">
+        <input type="email" name="email" placeholder="{$lang.email}" class="m-b-10 p-lr-20">
+        <input type="text" name="phone" placeholder="{$lang.phone}" class="m-b-10 p-lr-20">
+        <textarea name="message" placeholder="{$lang.message}"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
 </main>
