@@ -18,99 +18,81 @@
   </head>
   <body >
     <div id="map"></div>
-
     <input type="text" id="coords" />
     <input type="text" id="circle" />
     <script>
+        var marker;
+        var coords = {};
 
+        initMap = function ()
+        {
+            coords =  {
+                lng: -86.8150377,
+                lat: 21.1747475,
+                cir: 500
+            };
 
-var marker;          //variable del marcador
-var coords = {};    //coordenadas obtenidas con la geolocalización
+            setMapa(coords);
 
-//Funcion principal
-initMap = function ()
-{
+            document.getElementById("coords").value = coords["lat"] + "," + coords["lng"];
+            document.getElementById("circle").value = coords["cir"];
+        }
 
-    //usamos la API para geolocalizar el usuario
-      coords =  {
-          lng: -86.8150377,
-          lat: 21.1747475,
-          cir: 500
-      };
-      setMapa(coords);  //pasamos las coordenadas al metodo para crear el mapa
-      document.getElementById("coords").value = coords['lat'] + "," + coords['lng'];
-      document.getElementById("circle").value = coords['cir'];
+        document.getElementById("circle").onkeyup = function()
+        {
+            coords =  {
+                lng: -86.8150377,
+                lat: 21.1747475,
+                cir: parseInt(document.getElementById("circle").value)
+            };
 
-}
+            setMapa(coords);
+        };
 
-document.getElementById("circle").onkeyup = function(){
-    coords =  {
-        lng: -86.8150377,
-        lat: 21.1747475,
-        cir: parseInt(document.getElementById("circle").value)
-    };
+        function setMapa (coords)
+        {
+            var map = new google.maps.Map(document.getElementById("map"),
+            {
+                zoom: 13,
+                center:new google.maps.LatLng(coords.lat,coords.lng)
+            });
 
-    setMapa(coords);
-};
+            var circle = new google.maps.Circle({
+                strokeColor: "#fa7268",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#fa7268",
+                fillOpacity: 0.2,
+                map: map,
+                center: {
+                    lat: coords.lat,
+                    lng: coords.lng
+                },
+                radius: coords.cir
+            });
 
-function setMapa (coords)
-{
-      //Se crea una nueva instancia del objeto mapa
-      var map = new google.maps.Map(document.getElementById('map'),
-      {
-        zoom: 13,
-        center:new google.maps.LatLng(coords.lat,coords.lng),
+            marker = new google.maps.Marker({
+                map: map,
+                title: "Localízate",
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng(coords.lat,coords.lng)
+            });
 
-      });
+            marker.addListener("click", toggleBounce);
+            marker.addListener("dragend", function (event)
+            {
+                document.getElementById("coords").value = this.getPosition().lat() + "," + this.getPosition().lng();
+            });
+        }
 
-      var circle = new google.maps.Circle({
-        strokeColor: '#fa7268',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#fa7268',
-        fillOpacity: 0.2,
-        map: map,
-        center: {
-            lat: coords.lat,
-            lng: coords.lng
-        },
-        radius: coords.cir
-    });
-
-
-      //Creamos el marcador en el mapa con sus propiedades
-      //para nuestro obetivo tenemos que poner el atributo draggable en true
-      //position pondremos las mismas coordenas que obtuvimos en la geolocalización
-      marker = new google.maps.Marker({
-        map: map,
-        title: 'Localízate',
-        draggable: true,
-            animation: google.maps.Animation.DROP,
-        position: new google.maps.LatLng(coords.lat,coords.lng),
-
-      });
-      //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica
-      //cuando el usuario a soltado el marcador
-      marker.addListener('click', toggleBounce);
-
-      marker.addListener( 'dragend', function (event)
-      {
-        //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
-        document.getElementById("coords").value = this.getPosition().lat()+","+ this.getPosition().lng();
-      });
-}
-
-//callback al hacer clic en el marcador lo que hace es quitar y poner la animacion BOUNCE
-function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
-}
-
-// Carga de la libreria de google maps
-
+        function toggleBounce()
+        {
+            if (marker.getAnimation() !== null)
+                marker.setAnimation(null);
+            else
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLCea8Q6BtcTHwY3YFCiB0EoHE5KnsMUE&callback=initMap" async defer></script>
   </body>
