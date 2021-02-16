@@ -2,7 +2,7 @@
 
 require 'plugins/php_qr_code/qrlib.php';
 
-public function excel()
+public function idone_up_employees()
 {
     $xlsx = SimpleXLSX::parse(PATH_UPLOADS . 'imports.xlsx');
 
@@ -108,5 +108,53 @@ public function excel()
         ]);
 
         QRcode::png($qr['content'], $qr['dir'], $qr['level'], $qr['size'], $qr['frame']);
+    }
+}
+
+public function guestvox_up_ambit_products()
+{
+    $xlsx = SimpleXLSX::parse(PATH_UPLOADS . 'casapepe.xlsx');
+    $position = 1;
+
+    foreach ($xlsx->rows() as $value)
+    {
+        $category = $this->database->select('menu_categories', [
+            'id',
+            'icon'
+        ], [
+            'map' => $value[6]
+        ]);
+
+        $this->database->insert('menu_products', [
+            'account' => 20,
+            'name' => json_encode([
+                'es' => trim($value[1]),
+                'en' => trim($value[1])
+            ]),
+            'description' => json_encode([
+                'es' => '',
+                'en' => ''
+            ]),
+            'topics' => json_encode([]),
+            'price' => $value[2],
+            'position' => $position,
+            'available' => json_encode([
+                'days' => ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"],
+                'start_date' => '',
+                'end_date' => ''
+            ]),
+            'avatar' => 'icon',
+            'image' => null,
+            'icon' => $category[0]['icon'],
+            'categories' => json_encode([$category[0]['id']]),
+            'restaurant' => null,
+            'code' => json_encode([
+                'id' => trim($value[0]),
+                'categorie' => $value[6]
+            ]),
+            'status' => true
+        ]);
+
+        $position = $position + 1;
     }
 }
